@@ -61,3 +61,16 @@ Then we can add full 4d movement, then we can randomise it.
 We can then create certain areas in the enviroment which will have lots of food, places good for sleeping, good for drinking, etc and use some form of math so the animals will choose what they need/want.
 
 I think the most key algorithm here is going to be a monte carlo..
+
+Graphics:
+
+We have a main renderer loop.
+We have RenderObject class takes the VBO, VAO and vectrices with some other functions.
+We have shaders.h to just keep shaders config easily.
+glad.c needed boilerplate.
+and main.cpp calling everything/defining vectors.
+just need vertices update function in renderObject.
+
+
+
+
