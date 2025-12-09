@@ -1,0 +1,3 @@
+exclude:
+  - include/
+  - src/glad.c
