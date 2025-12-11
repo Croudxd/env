@@ -6,7 +6,6 @@
 
 #include <GLFW/glfw3.h>
 #include <cstdio>
-#include <utility>
 #include <vector>
 
 int renderer(std::vector<RenderObject> &objects) {

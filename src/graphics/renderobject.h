@@ -1,4 +1,4 @@
-#include <utility>
+#pragma once
 #include <vector>
 class RenderObject {
 public:
@@ -7,6 +7,8 @@ public:
   unsigned int &get_vbo() { return this->VBO; };
   unsigned int &get_vao() { return this->VAO; };
   std::vector<float> &get_vertices() { return this->vertices; };
+
+  void set_vertices(std::vector<float> vertices) { this->vertices = vertices; };
 
 private:
   unsigned int VBO;

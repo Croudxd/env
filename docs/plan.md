@@ -1,6 +1,53 @@
 
 Environment simulator. 
 
+Alright so we will have 2 Main loops:
+
+Renderer Loop which will update the screen every frame, which will also call the engine loop.
+The engine loop will host our models, and our math.
+Every loop we calculate probability of each objects next decision etc, then we calculate the movement they will make.
+Which we will then update via the renderObject inside each model. And then return to the renderer loop which
+will update the screen.
+
+
+Main 
+Call renderer, make list of things we want in the simulator.
+-------------------
+
+Renderer
+Call gflw and opengl for the display setup, draw inital values to opengl from the list of things from main and call the engine loop.
+-------------------
+
+engine loop
+We are gonna call math on each object inside the object list from main.
+predict the things the objects will do such as sleep or eat or hunt and move to where etc.
+change the x and y values of each object every frame which then gets updated when we call back to the 
+renderer.
+-------------------
+
+
+Okay one problem i am thinking of rn is if we have a rabbit, and nothing is in its perception window/area.
+No Food
+No mates
+No predators,
+No water
+
+what does the rabbit do?
+
+So we need to have the rabbit kind of learn/remember where things are. But when a rabbit or n object is born,
+they know nothing, we can then update the rabbits memory.
+
+So to make things less memory intensive. We can have an idle status.
+
+we will have a hashmap or some data structure that stores memories such as "woodlands here: lots of food and safer." something like this right we can say give a score to each general nxn area so if a rabbit is in a area of maybe 1 it will try and move to a 10 area if it starts to idle.
+
+But only when idling will we look inside the ds for the memories.
+
+
+This means we need to give the objects memories.
+
+
+# OLD 
 Several Objects:
 Plants - trees, grass, flowers
 Insects - ants, worms, spiders, bees 
@@ -70,7 +117,3 @@ We have shaders.h to just keep shaders config easily.
 glad.c needed boilerplate.
 and main.cpp calling everything/defining vectors.
 just need vertices update function in renderObject.
-
-
-
-
