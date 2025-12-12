@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "engine/engine.h"
 #include "shaders.h"
 #include <cstddef>
 #include <glad/glad.h>
@@ -66,7 +67,9 @@ int renderer(std::vector<RenderObject> &objects) {
 
   while (!glfwWindowShouldClose(window)) {
     glClear(GL_COLOR_BUFFER_BIT);
+
     for (auto &x : objects) {
+      engine();
       glBindBuffer(GL_ARRAY_BUFFER, x.get_vbo());
       glBufferSubData(GL_ARRAY_BUFFER, 0,
                       x.get_vertices().size() * sizeof(float),

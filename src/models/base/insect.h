@@ -1,4 +1,5 @@
-class insect {
+#include "models/base/entity.h"
+class insect : public Entity {
 public:
   int get_max_speed() { return max_speed; }
   int get_energy() { return energy; }

@@ -1,8 +1,8 @@
 #pragma once
 #include "graphics/renderobject.h"
-
+#include "models/base/entity.h"
 #include <vector>
-class Plants {
+class Plants : public Entity {
 public:
   Plants(int energy, int rate_of_growth, int age_limit, int health,
          int photosynthsis_rate, std::vector<float> vertices)

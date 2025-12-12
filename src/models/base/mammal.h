@@ -1,4 +1,5 @@
-class mammals {
+#include "models/base/entity.h"
+class mammals : public Entity {
 public:
   int get_max_speed() { return max_speed; }
   int get_energy() { return energy; }
