@@ -1,0 +1,4 @@
+struct Hunger
+{
+    float hunger;
+};
