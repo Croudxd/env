@@ -2,6 +2,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <glad/glad.h>
+#include <iostream>
 
 const char *vertexShaderSource = R"glsl(
 #version 330 core
@@ -67,5 +68,6 @@ unsigned int initalize_shaders ()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
+    std::cout << "success";
     return shaderProgram;
 }

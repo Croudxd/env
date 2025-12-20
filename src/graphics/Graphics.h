@@ -1,6 +1,8 @@
 #pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "models/components/renderobject.h"
+
 
 class Graphics
 {
@@ -14,9 +16,8 @@ private:
 public:
     Graphics ( ) ;
     ~Graphics ( ) ;
-    void Update ( ) ;
+    void Update ( RenderObject obj ) ;
     GLFWwindow* get_window();
-
 
 };
 
