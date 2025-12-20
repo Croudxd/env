@@ -15,6 +15,8 @@ public:
     Graphics ( ) ;
     ~Graphics ( ) ;
     void Update ( ) ;
+    GLFWwindow* get_window();
+
 
 };
 

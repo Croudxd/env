@@ -8,6 +8,12 @@ RenderObject::RenderObject(std::vector<float> vertices) {
   this->VBO = 0;
 };
 
+RenderObject::~RenderObject ( )
+{
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+};
+
 int RenderObject::init_buffers() {
   unsigned int VAO, VBO;
   glGenVertexArrays(1, &VAO);

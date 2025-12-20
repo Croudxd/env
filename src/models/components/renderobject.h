@@ -4,6 +4,7 @@ class RenderObject {
 public:
   RenderObject() = default;
   RenderObject(std::vector<float> vertices);
+  ~RenderObject () ;
   int init_buffers();
   unsigned int &get_vbo() { return this->VBO; };
   unsigned int &get_vao() { return this->VAO; };

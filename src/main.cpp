@@ -2,8 +2,9 @@
 #include <unistd.h>
 #include <vector>
 #include <GLFW/glfw3.h>
-#include "models/Entity_data.h"
 
+#include "models/Entity_data.h"
+#include "engine/engine.h"
 
 std::vector<float> vertices = 
 {
@@ -32,6 +33,9 @@ int main ( )
 {
     Entity_data entity_data;
     //set data.
-
+    
+   Engine engine = Engine ( entity_data ) ;
+   engine.run();
+    
 }
 
