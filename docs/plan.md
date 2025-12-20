@@ -1,5 +1,35 @@
 
-Environment simulator. 
+# Environment simulator. 
+- - - 
+
+### 14/dec
+- - - 
+Alright this time we are trying something new.
+
+So OOP has a weakness in this situation especially in cpp is that we cant store a species in a animal type (mammal, bird) inside an entity vector without losing data and its not very dynamic and will introduce redundent code.
+
+So we can use ECS
+
+We are gonna have components/the data be stored with just an id of the entity. this way we can be alot more dynamic
+
+we can then loop over this data, find out the proximity of each entity, but by only using the component of position meaning we can do it for every single entity as we are not restricted via the type.
+after we calculate we can then go to the monte carlo sitatuion.
+
+Once we have the entity we want to calculate, the entities the main entity can see. We can then calculate a decision for the main entity.
+We have to make this function very dynamic, but we pretty much HAVE to code every single decision, as thats the limitation of programming. we cant have the code
+make up its own decision, (neither can ai which i thought about.)
+
+Then it returns a decision and we can calculate what to do in terms of x and y.
+
+and any other data that needs to get updated.
+
+So steps.
+
+1. Calculate ECS
+2. Dynamicly loop over all entities.
+3. Calculate monte carlo.
+
+- - - 
 
 Alright so we will have 2 Main loops:
 

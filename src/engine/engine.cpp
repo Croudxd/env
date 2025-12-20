@@ -1,19 +1,19 @@
 #include "engine.h"
-#include "models/base/entity.h"
-#include "models/base/plant.h"
-void engine(Entity *obj) {
-  // We gonna take the obj, check what type it is. Then call math n shi.
+#include "graphics/Graphics.h"
+#include "models/Entity_data.h"
 
-  if (dynamic_cast<Plants *>(obj)) {
-  }
-  if (dynamic_cast<Plants *>(obj)) {
-  }
-  if (dynamic_cast<Plants *>(obj)) {
-  }
-  if (dynamic_cast<Plants *>(obj)) {
-  }
-  if (dynamic_cast<Plants *>(obj)) {
-  }
-  if (dynamic_cast<Plants *>(obj)) {
-  }
+Engine::Engine ( Entity_data entity_data ) : entity_data(entity_data)
+{
+    
 }
+
+Engine::~Engine ( )
+{
+
+}
+
+void Engine::run ( )
+{
+
+}
+

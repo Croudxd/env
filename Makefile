@@ -1,7 +1,7 @@
 
 CXX = g++
 CXXFLAGS = -std=c++20 -Wall -Wextra -Iinclude -g -Isrc
-SRC = src/main.cpp src/glad.c src/graphics/renderer.cpp src/graphics/renderobject.cpp src/engine/engine_loop.cpp
+SRC = src/main.cpp src/glad.c src/graphics/Graphics.cpp src/models/components/renderobject.cpp src/engine/engine.cpp
 LIBS = -lglfw -ldl
 OUT = app
 
