@@ -2,7 +2,8 @@
 #include <glad/glad.h>
 #include <vector>
 
-RenderObject::RenderObject(std::vector<float> vertices) {
+RenderObject::RenderObject ( std::vector<float> vertices )
+{
   this->vertices = vertices;
   this->VAO = 0;
   this->VBO = 0;
@@ -10,29 +11,29 @@ RenderObject::RenderObject(std::vector<float> vertices) {
 
 RenderObject::~RenderObject ( )
 {
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
+    glDeleteVertexArrays ( 1, &VAO );
+    glDeleteBuffers ( 1, &VBO );
 };
 
-int RenderObject::init_buffers() {
-  unsigned int VAO, VBO;
-  glGenVertexArrays(1, &VAO);
-  glBindVertexArray(VAO);
+int RenderObject::init_buffers () {
+  unsigned int VAO = 0,  VBO = 0;
+  glGenVertexArrays ( 1, &VAO );
+  glBindVertexArray ( VAO );
 
-  glGenBuffers(1, &VBO);
+  glGenBuffers ( 1, &VBO );
 
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float),
-               vertices.data(), GL_STATIC_DRAW);
+  glBindBuffer ( GL_ARRAY_BUFFER, VBO );
+  glBufferData ( GL_ARRAY_BUFFER, vertices.size() * sizeof ( float ) ,
+               vertices.data(), GL_STATIC_DRAW );
 
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+  glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( float ), ( void * ) 0 );
   glEnableVertexAttribArray(0);
 
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+  glVertexAttribPointer ( 1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof ( float ),
                         (void *)(3 * sizeof(float)));
-  glEnableVertexAttribArray(1);
+  glEnableVertexAttribArray ( 1 );
 
-  glBindVertexArray(0);
+  glBindVertexArray ( 0 );
   this->VAO = VAO;
   this->VBO = VBO;
   return 0;

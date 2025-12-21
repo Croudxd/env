@@ -34,3 +34,4 @@ struct Entity_data
     std::unordered_map<Entity, Sleep> sleep_map;
     std::unordered_map<Entity, Status> status_map;
 };
+ 

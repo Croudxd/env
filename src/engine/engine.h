@@ -1,15 +1,17 @@
 #pragma once
-#include "models/components/renderobject.h"
+#include "graphics/Graphics.h"
 #include "models/Entity_data.h"
 
 class Engine
 {
 
 public:
-    Engine ( Entity_data entity_data ) ;
+    Engine ( Entity_data& entity_data ) ;
     ~Engine ( ) ;
-    void run ();
+    void run ( );
+    Entity_data& get_entity_data ( );
 private:    
     Entity_data entity_data;
+    Graphics graphics;
 
 };
