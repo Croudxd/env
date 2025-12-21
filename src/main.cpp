@@ -25,14 +25,18 @@ std::vector<float> vertices3 =
 
 void create_tree (Entity_data& entity_data, int id /* position */ )
 {
-  
-    
     std::vector<float> vertices = 
     {
-        -0.1f, -0.1f, 0.0f, 0.0f, 1.0f, 0.0f, // Vertex 1 (position and color: Green)
-        0.0f,  0.1f,  0.0f, 0.0f, 1.0f, 0.0f, // Vertex 2 (position and color: Green)
-        0.1f,  -0.1f, 0.0f, 0.0f, 1.0f, 0.0f  // Vertex 3 (position and color: Green)
-    };
+              //X Y Z               //Colors
+   -0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Bottom left (Red)
+     0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Bottom right (Red)
+    -0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Top left (Red)
+
+    // Second triangle (right half of the square)
+     0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Bottom right (Red)
+     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Top right (Red)
+    -0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f   // Top left (Red)    };
+    };                                             
     entity_data.entity_vec.push_back ( id );
     RenderObject obj = RenderObject ( vertices );
     entity_data.render_map.emplace ( id,  obj );
