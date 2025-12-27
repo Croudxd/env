@@ -1,6 +1,30 @@
 
 # Environment simulator. 
 - - - 
+### 21 dec
+- - - 
+Okay ECS is implemented, and restructured the code
+
+
+Currently need to get grid system working.
+
+if i have a grid of 1 to -1 
+and want to ahve a grid size of 0.1x0.1
+i need to calclulate the x and y of each vertex and then compare to the grid to determine if the shape is in 1 grid or multiple grids, and also what grind.
+
+no bloody clue how to do this...
+
+
+grid_index = ( ![x or y] - grid_min / grid_size )            
+
+okay so using the above formula
+
+we can calculate the grid location of a vertex.
+
+If a entity has vertex's in multiple cells, we will check the perception of the entity for every cell its in.
+
+
+
 
 ### 14/dec
 - - - 

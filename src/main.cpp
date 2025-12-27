@@ -28,7 +28,7 @@ void create_tree (Entity_data& entity_data, int id /* position */ )
     std::vector<float> vertices = 
     {
               //X Y Z               //Colors
-   -0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Bottom left (Red)
+    -0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Bottom left (Red)
      0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Bottom right (Red)
     -0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // Top left (Red)
 
@@ -42,6 +42,7 @@ void create_tree (Entity_data& entity_data, int id /* position */ )
     entity_data.render_map.emplace ( id,  obj );
 }
 
+
 int main ( )
 {
     Entity_data entity_data;
@@ -49,7 +50,6 @@ int main ( )
     Engine engine = Engine ( entity_data ) ;
     create_tree ( engine.get_entity_data() ,  1 /* id */ );
     engine.run ( );
-    
 }
 
 

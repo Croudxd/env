@@ -1,6 +1,10 @@
 #pragma once
 #include "graphics/Graphics.h"
 #include "models/Entity_data.h"
+#include <unordered_map>
+
+
+using grid = int;
 
 class Engine
 {
@@ -14,5 +18,6 @@ public:
 private:    
     Entity_data entity_data;
     Graphics graphics;
+    std::unordered_map < grid, std::vector <Entity> > Grid_map; 
 
 };

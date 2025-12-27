@@ -1,5 +1,5 @@
 struct Grid 
 {
-    char letter;
-    int number;
+    float x;
+    float y;
 };

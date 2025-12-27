@@ -1,6 +1,7 @@
 #include "engine.h"
 #include "graphics/Graphics.h"
 #include "models/Entity_data.h"
+#include "models/components/grid.h"
 #include <iostream>
 
 Engine::Engine ( Entity_data& entity_data ) : entity_data(entity_data)
@@ -29,6 +30,12 @@ void Engine::run ( )
         RenderObject &obj = entity_data.render_map [ 1 ]; 
         obj.init_buffers ( );
         this->graphics.Update ( obj );
+    }for (const auto& [key, value] : Grid_map)
+    {
+        if (value.size() < 2)
+        {
+            //do nothing
+        }
     }
 }
 
@@ -39,39 +46,19 @@ Entity_data& Engine::get_entity_data ( )
 }
 
 void Engine::init_grid ( )
-{
-    for ( auto &id : this->entity_data.entity_vec )
+{ 
+
+    //go into every remder object, find each x , y value, which is going to alligm to a cell number, add that to the gridmap
+    for ( auto &x : entity_data.entity_vec) 
     {
-        std::vector <float> &vec = entity_data.render_map [ id ].get_vertices ( );
-        int size = vec.size ( ); 
-
-        if ( size == 18 )
-        {
-           //vertex 1:
-           float grid_index_x = (vec [ 0  ] - ( -1.0 ) / 0.1 );
-           float grid_index_y = (vec [ 1  ] - ( -1.0 ) / 0.1 );
-        {    
-           float grid_index_x = (vec [ 6  ] - ( -1.0 ) / 0.1 );
-           float grid_index_y = (vec [ 7  ] - ( -1.0 ) / 0.1 );
-        }
-
-        {    
-           float grid_index_x = (vec [ 12 ] - ( -1.0 ) / 0.1 );
-           float grid_index_y = (vec [ 13 ] - ( -1.0 ) / 0.1 );
-        }
-
-
-        }
-        if ( size == 36 )
-        {
-            // square.
-        }
-        else 
-        {
-            return; 
-        }
+        RenderObject obj = entity_data.render_map [ x ];
+        //so obj will store all the vertices, we meed to get the x amd y of each and findthe balue of 
+        obj.get_vertices();
     }
 
+
+
+    
 }  
 
 
