@@ -36,6 +36,8 @@ void create_tree (Entity_data& entity_data, int id /* position */ )
     entity_data.entity_vec.push_back ( id );
     RenderObject obj = RenderObject ( vertices );
     entity_data.render_map.emplace ( id,  obj );
+    struct Perception perp = { 0.3, 0.3 };
+    entity_data.perception_map.emplace (id,  perp );
 }
 
 int main ( )
@@ -44,6 +46,7 @@ int main ( )
     
     Engine engine = Engine ( entity_data ) ;
     create_tree ( engine.get_entity_data() ,  1 /* id */ );
+    create_tree ( engine.get_entity_data() ,  2 /* id */ );
     engine.run ( );
     
 }
