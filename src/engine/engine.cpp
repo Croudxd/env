@@ -20,23 +20,25 @@ void Engine::run (   )
     // This is our main loop.
     while ( !glfwWindowShouldClose ( this->graphics.get_window ( ) ) )
     {
-        std::vector<float> x_vertices;
-        std::vector<float> y_vertices;
+       
         //Update our entities.
         for (auto &x : entity_data.entity_vec)
         {
+            std::vector<float> x_vertices;
+            std::vector<float> y_vertices;
+            std::cout << "entity id: " << x  << std::endl;
             RenderObject obj = entity_data.render_map [ x ]; 
             //calulate out objs calculate the midpoint of the shape.
             int vert_count = obj.get_vertices().size() / 6;
-            for (int x = 0; x < vert_count; x++)
+            
+            for ( int j = 0; j < obj.get_vertices().size(); j+=6 )
             {
-                for ( int j = 0; j < obj.get_vertices().size(); j+=6 )
-                {
-                    std::vector<float> vertices = obj.get_vertices();
-                    x_vertices.push_back ( vertices [ j ] );
-                    y_vertices.push_back( vertices [ j+1 ] );
-                }
+                std::vector<float> vertices = obj.get_vertices();
+                x_vertices.push_back ( vertices [ j ] );
+                y_vertices.push_back( vertices [ j+1 ] );
+                std::cout << obj.get_vertices().size() <<  "jjj" << j << std::endl;
             }
+        
             float mid_x = 0;
             float mid_y = 0;
             for ( auto &i : x_vertices )
@@ -58,14 +60,11 @@ void Engine::run (   )
                 RenderObject ent_obj = entity_data.render_map [ x ]; 
                 //calulate out objs calculate the midpoint of the shape.
                 int ent_vert_count = ent_obj.get_vertices().size() / 6;
-                for (int ent_x = 0; ent_x < ent_vert_count; ent_x++)
+                for ( int ent_j = 0; ent_j < ent_obj.get_vertices().size(); ent_j+=6 )
                 {
-                    for ( int ent_j = 0; ent_j < ent_obj.get_vertices().size(); ent_j+=6 )
-                    {
-                        std::vector<float> ent_vertices = ent_obj.get_vertices();
-                        ent_x_vertices.push_back ( ent_vertices [ ent_j ] );
-                        ent_y_vertices.push_back( ent_vertices [ ent_j+1 ] );
-                    }
+                    std::vector<float> ent_vertices = ent_obj.get_vertices();
+                    ent_x_vertices.push_back ( ent_vertices [ ent_j ] );
+                    ent_y_vertices.push_back( ent_vertices [ ent_j+1 ] );
                 }
                 float ent_mid_x = 0;
                 float ent_mid_y = 0;
@@ -77,27 +76,33 @@ void Engine::run (   )
                 {
                     ent_mid_y += ent_y;
                 }
+                std::cout <<  " ent mid x y:"<<ent_mid_x << ent_mid_y << std::endl;
+                std::cout <<  " mid x y:"<< mid_x << mid_y << std::endl;
                 ent_mid_x = ent_mid_x / ent_x_vertices.size();
                 ent_mid_y = ent_mid_y / ent_y_vertices.size();
                 
                 float x_calc = ( ent_mid_x - mid_x );
                 float y_calc = ( ent_mid_y - mid_y );
+                std::cout << x_calc << y_calc << std::endl;
                 float distance = std::sqrt( ( x_calc*x_calc ) +  ( y_calc*y_calc ) );
-                if (distance == percep )
+                if (distance <= percep )
                 {
-                    std::cout << "brute force works";
+                    std::cout << "brute force works" << std::endl;
+                    std::cout << "distance" << distance << std::endl;
                 }
                 else 
                 {
-                    std::cout << "brute force doesnt work";
+                    std::cout << distance << std::endl;
+                    std::cout << percep << std::endl;
                 }
-
             }
         }
         //Draw to screen.
-        RenderObject &obj = entity_data.render_map [ 1 ]; 
-        obj.init_buffers ( );
-        this->graphics.Update ( obj );
+        for ( auto& [ id, obj ] : entity_data.render_map )
+        {
+            obj.init_buffers ( );
+            this->graphics.Update ( obj ) ;
+        }
     }
 }
 

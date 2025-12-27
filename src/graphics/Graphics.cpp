@@ -12,7 +12,6 @@
 
 Graphics::Graphics ( )
 {
-    std::cout << "into";
     if ( !glfwInit ( ) )
     {
         std::cout << "glfw init failed.";
