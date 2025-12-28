@@ -13,6 +13,7 @@
 #include "models/components/rate_of_growth.h"
 #include "models/components/sleep.h"
 #include "models/components/status.h"
+#include "models/components/visable_entities.h"
 
 
 
@@ -33,5 +34,6 @@ struct Entity_data
     std::unordered_map<Entity, Rate_of_growth> rate_of_growth_map;
     std::unordered_map<Entity, Sleep> sleep_map;
     std::unordered_map<Entity, Status> status_map;
+    std::unordered_map<Entity, Visable_entities> visable_entities_map;
 };
  
