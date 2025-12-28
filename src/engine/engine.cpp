@@ -21,82 +21,8 @@ void Engine::run (   )
     while ( !glfwWindowShouldClose ( this->graphics.get_window ( ) ) )
     {
        
-        //Update our entities.
-        for (auto &x : entity_data.entity_vec)
-        {
-            std::vector<float> x_vertices;
-            std::vector<float> y_vertices;
-            std::cout << "entity id: " << x  << std::endl;
-            RenderObject obj = entity_data.render_map [ x ]; 
-            //calulate out objs calculate the midpoint of the shape.
-            int vert_count = obj.get_vertices().size() / 6;
-            
-            for ( int j = 0; j < obj.get_vertices().size(); j+=6 )
-            {
-                std::vector<float> vertices = obj.get_vertices();
-                x_vertices.push_back ( vertices [ j ] );
-                y_vertices.push_back( vertices [ j+1 ] );
-                std::cout << obj.get_vertices().size() <<  "jjj" << j << std::endl;
-            }
-        
-            float mid_x = 0;
-            float mid_y = 0;
-            for ( auto &i : x_vertices )
-            {
-                mid_x += i;
-            }
-            for ( auto &z : y_vertices )
-            {
-                mid_y += z;
-            }
-            mid_x = mid_x / x_vertices.size();
-            mid_y = mid_y / y_vertices.size();
-            float percep = entity_data.perception_map [ x ].perception_day;
+        perception_brute_force ();
 
-            for ( int ent = 1; ent < entity_data.entity_vec.size(); ent++)
-            {
-                std::vector<float> ent_x_vertices;
-                std::vector<float> ent_y_vertices;
-                RenderObject ent_obj = entity_data.render_map [ x ]; 
-                //calulate out objs calculate the midpoint of the shape.
-                int ent_vert_count = ent_obj.get_vertices().size() / 6;
-                for ( int ent_j = 0; ent_j < ent_obj.get_vertices().size(); ent_j+=6 )
-                {
-                    std::vector<float> ent_vertices = ent_obj.get_vertices();
-                    ent_x_vertices.push_back ( ent_vertices [ ent_j ] );
-                    ent_y_vertices.push_back( ent_vertices [ ent_j+1 ] );
-                }
-                float ent_mid_x = 0;
-                float ent_mid_y = 0;
-                for ( auto &ent_x : ent_x_vertices )
-                {
-                    ent_mid_x += ent_x;
-                }
-                for ( auto &ent_y : ent_y_vertices )
-                {
-                    ent_mid_y += ent_y;
-                }
-                std::cout <<  " ent mid x y:"<<ent_mid_x << ent_mid_y << std::endl;
-                std::cout <<  " mid x y:"<< mid_x << mid_y << std::endl;
-                ent_mid_x = ent_mid_x / ent_x_vertices.size();
-                ent_mid_y = ent_mid_y / ent_y_vertices.size();
-                
-                float x_calc = ( ent_mid_x - mid_x );
-                float y_calc = ( ent_mid_y - mid_y );
-                std::cout << x_calc << y_calc << std::endl;
-                float distance = std::sqrt( ( x_calc*x_calc ) +  ( y_calc*y_calc ) );
-                if (distance <= percep )
-                {
-                    std::cout << "brute force works" << std::endl;
-                    std::cout << "distance" << distance << std::endl;
-                }
-                else 
-                {
-                    std::cout << distance << std::endl;
-                    std::cout << percep << std::endl;
-                }
-            }
-        }
         //Draw to screen.
         for ( auto& [ id, obj ] : entity_data.render_map )
         {
@@ -107,7 +33,67 @@ void Engine::run (   )
 }
 
 
-Entity_data& Engine::get_entity_data ( )
+Entity_data& Engine::get_entity_data ()
 { 
     return this->entity_data;
+}
+
+
+bool Engine::perception_brute_force ()
+{
+    for ( auto &id_a : entity_data.entity_vec )
+    {
+        RenderObject& obj_a = entity_data.render_map [ id_a ];
+        auto vertices_a = obj_a.get_vertices ();
+        
+        float mid_x_a = 0, mid_y_a = 0;
+        int count_a = 0;
+
+        for ( size_t j = 0; j < vertices_a.size (); j += 6 )
+        {
+            mid_x_a += vertices_a [ j ];
+            mid_y_a += vertices_a [ j+1 ];
+            count_a++;
+        }
+        if ( count_a > 0 )
+        {
+            mid_x_a /= count_a;
+            mid_y_a /= count_a;
+        }
+
+        float percep = entity_data.perception_map[id_a].perception_day;
+
+        for ( auto &id_b : entity_data.entity_vec ) 
+        {
+            if ( id_a == id_b ) continue;  
+
+            RenderObject& obj_b = entity_data.render_map [ id_b ];
+            auto vertices_b = obj_b.get_vertices ();
+            
+            float mid_x_b = 0, mid_y_b = 0;
+            int count_b = 0;
+
+            for ( size_t k = 0; k < vertices_b.size(); k += 6 )
+            {
+                mid_x_b += vertices_b [ k ];
+                mid_y_b += vertices_b [ k+1 ];
+                count_b++;
+            }
+            if ( count_b > 0 ) 
+            {
+                mid_x_b /= count_b;
+                mid_y_b /= count_b;
+            }
+
+            float dx = mid_x_b - mid_x_a;
+            float dy = mid_y_b - mid_y_a;
+            float distance = std::sqrt( ( dx * dx ) + ( dy * dy ) );
+
+            if ( distance <= percep ) 
+            {
+                entity_data.visable_entities_map [ id_a ].entities.push_back( id_b );
+            }
+       }
+    }
+    return false; 
 }
