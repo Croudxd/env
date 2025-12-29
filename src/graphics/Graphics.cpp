@@ -46,19 +46,16 @@ Graphics::~Graphics ( )
     glfwTerminate ( );
 }
 
-void Graphics::Update ( RenderObject obj ) 
+void Graphics::Update (  RenderObject& obj ) 
 {
-    std::vector < float > vec = obj.get_vertices();
-    glClear ( GL_COLOR_BUFFER_BIT );
-    glBindBuffer ( GL_ARRAY_BUFFER, obj.get_vbo ( ) );
-    glBufferSubData ( GL_ARRAY_BUFFER, 0, obj.get_vertices( ).size() * sizeof ( float ), static_cast<const void *>( obj.get_vertices( ).data( ) ) );
     glUseProgram ( shaderProgram );
-    glBindVertexArray ( obj.get_vao ( ) );
-    glDrawArrays ( GL_TRIANGLES, 0, obj.get_vertices().size() / 6 );
-    glBindVertexArray ( 0 );
-    glfwSwapBuffers ( window );
-    glfwPollEvents ( );
-}
+    glBindVertexArray ( obj.get_vao() );
+    
+    // Use 3 if you only have XYZ positions
+    int vertexCount = obj.get_vertices().size() / 6; 
+    glDrawArrays ( GL_TRIANGLES, 0, vertexCount );
+    
+    glBindVertexArray ( 0 );}
 
 GLFWwindow* Graphics::create_glfw_window ()
 {

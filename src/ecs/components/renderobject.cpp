@@ -15,26 +15,52 @@ RenderObject::~RenderObject ( )
     glDeleteBuffers ( 1, &VBO );
 };
 
+RenderObject::RenderObject ( RenderObject && other ) noexcept
+{
+    this->VAO = other.VAO;
+    this->VBO = other.VBO;
+    this->vertices = std::move(other.vertices);
+
+
+    other.VAO = 0;
+    other.VBO = 0;
+}
+
+RenderObject& RenderObject::operator= ( RenderObject && other) noexcept
+{
+
+    if ( this != &other )
+    {
+        glDeleteVertexArrays ( 1, &VAO );
+        glDeleteBuffers ( 1, &VBO );
+        this->VAO = other.VAO;
+        this->VBO = other.VBO;
+        this->vertices = std::move(other.vertices); 
+                                                    
+        other.VAO = 0;
+        other.VBO = 0;
+    }
+    return *this;
+}
+
+
 int RenderObject::init_buffers () {
-  unsigned int VAO = 0,  VBO = 0;
-  glGenVertexArrays ( 1, &VAO );
-  glBindVertexArray ( VAO );
+    glGenVertexArrays ( 1, &this->VAO );
+    glBindVertexArray ( this->VAO );
 
-  glGenBuffers ( 1, &VBO );
+    glGenBuffers ( 1, &this->VBO );
 
-  glBindBuffer ( GL_ARRAY_BUFFER, VBO );
-  glBufferData ( GL_ARRAY_BUFFER, vertices.size() * sizeof ( float ) ,
+    glBindBuffer ( GL_ARRAY_BUFFER, this->VBO );
+    glBufferData ( GL_ARRAY_BUFFER, vertices.size() * sizeof ( float ) ,
                vertices.data(), GL_STATIC_DRAW );
 
-  glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( float ), ( void * ) 0 );
-  glEnableVertexAttribArray(0);
+    glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( float ), ( void * ) 0 );
+    glEnableVertexAttribArray(0);
 
-  glVertexAttribPointer ( 1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof ( float ),
+    glVertexAttribPointer ( 1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof ( float ),
                         (void *)(3 * sizeof(float)));
-  glEnableVertexAttribArray ( 1 );
+    glEnableVertexAttribArray ( 1 );
 
-  glBindVertexArray ( 0 );
-  this->VAO = VAO;
-  this->VBO = VBO;
-  return 0;
+    glBindVertexArray ( 0 );
+    return 0;
 };

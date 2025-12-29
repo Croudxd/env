@@ -5,14 +5,18 @@
 #include <iostream>
 
 #include "ecs/Entity_data.h"
+#include "ecs/spawner/spawner.h"
 #include "engine/engine.h"
 
 
 int main ( )
 {
     Entity_data entity_data;
+    Spawner spawner = Spawner ( entity_data );
     Engine engine = Engine ( entity_data ) ;
-    engine.run ( );
+    spawner.add_entity ( "tree" );
+    spawner.add_entity ( "tree" );
+    engine.run ();
     
 }
 

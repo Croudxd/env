@@ -12,7 +12,7 @@ public:
     Entity_data& get_entity_data ( );
     bool perception_brute_force ( );
 private:    
-    Entity_data entity_data;
+    Entity_data &entity_data;
     Graphics graphics;
 
 };

@@ -16,7 +16,7 @@ private:
 public:
     Graphics ( ) ;
     ~Graphics ( ) ;
-    void Update ( RenderObject obj ) ;
+    void Update (  RenderObject& obj ) ;
     GLFWwindow* get_window();
 
 };
