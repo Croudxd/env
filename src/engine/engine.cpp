@@ -1,6 +1,6 @@
 #include "engine.h"
 #include "graphics/Graphics.h"
-#include "models/Entity_data.h"
+#include "ecs/Entity_data.h"
 #include <iostream>
 #include <cmath>
 
@@ -20,15 +20,15 @@ void Engine::run (   )
     // This is our main loop.
     while ( !glfwWindowShouldClose ( this->graphics.get_window ( ) ) )
     {
-       
         perception_brute_force ();
-
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //Draw to screen.
-        for ( auto& [ id, obj ] : entity_data.render_map )
-        {
-            obj.init_buffers ( );
-            this->graphics.Update ( obj ) ;
+        
+        for ( auto it = entity_data.render_map.begin(); it != entity_data.render_map.end(); ++it ) {
+            this->graphics.Update(it->second);
         }
+        glfwSwapBuffers(this->graphics.get_window());
+        glfwPollEvents();
     }
 }
 
@@ -41,6 +41,10 @@ Entity_data& Engine::get_entity_data ()
 
 bool Engine::perception_brute_force ()
 {
+    if ( entity_data.entity_vec.size () == 0)
+    {
+        return false;
+    }
     for ( auto &id_a : entity_data.entity_vec )
     {
         RenderObject& obj_a = entity_data.render_map [ id_a ];

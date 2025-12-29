@@ -1,7 +1,7 @@
 #pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "models/components/renderobject.h"
+#include "ecs/components/renderobject.h"
 
 
 class Graphics
@@ -16,7 +16,7 @@ private:
 public:
     Graphics ( ) ;
     ~Graphics ( ) ;
-    void Update ( RenderObject obj ) ;
+    void Update (  RenderObject& obj ) ;
     GLFWwindow* get_window();
 
 };

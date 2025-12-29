@@ -2,18 +2,18 @@
 #include <unordered_map>
 #include <vector>
 
-#include "models/components/renderobject.h"
-#include "models/components/endurance.h"
-#include "models/components/energy.h"
-#include "models/components/hunger.h"
-#include "models/components/eater_type.h"
-#include "models/components/max_age.h"
-#include "models/components/max_speed.h"
-#include "models/components/perception.h"
-#include "models/components/rate_of_growth.h"
-#include "models/components/sleep.h"
-#include "models/components/status.h"
-#include "models/components/visable_entities.h"
+#include "ecs/components/renderobject.h"
+#include "ecs/components/endurance.h"
+#include "ecs/components/energy.h"
+#include "ecs/components/hunger.h"
+#include "ecs/components/eater_type.h"
+#include "ecs/components/max_age.h"
+#include "ecs/components/max_speed.h"
+#include "ecs/components/perception.h"
+#include "ecs/components/rate_of_growth.h"
+#include "ecs/components/sleep.h"
+#include "ecs/components/status.h"
+#include "ecs/components/visable_entities.h"
 
 
 
@@ -22,6 +22,8 @@ using Entity = int;
 
 struct Entity_data
 {
+    Entity_data() = default;
+    Entity_data(const Entity_data&) = delete;  
     std::vector<Entity> entity_vec;
     std::unordered_map<Entity, RenderObject> render_map;  
     std::unordered_map<Entity, Eater_type> eater_type_map;
