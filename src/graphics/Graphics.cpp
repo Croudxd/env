@@ -53,7 +53,7 @@ void Graphics::Update (  RenderObject& obj )
     
     // Use 3 if you only have XYZ positions
     int vertexCount = obj.get_vertices().size() / 6; 
-    glDrawArrays ( GL_TRIANGLES, 0, vertexCount );
+    glDrawArrays ( GL_TRIANGLE_FAN, 0, vertexCount );
     
     glBindVertexArray ( 0 );}
 

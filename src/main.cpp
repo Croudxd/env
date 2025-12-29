@@ -15,6 +15,9 @@ int main ( )
     Spawner spawner = Spawner ( entity_data );
     Engine engine = Engine ( entity_data ) ;
     spawner.add_entity ( "tree" );
+    spawner.add_entity ( "tree" );
+    spawner.add_entity ( "fox" );
+    spawner.add_entity ( "fox" );
     spawner.add_entity ( "fox" );
     engine.run ();
     

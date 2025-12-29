@@ -7,7 +7,7 @@ class Shape
 {
     private:
         std::unordered_map<std::string, int> shape_map;
-        std::unordered_map<std::string, float> color_map;
+        std::unordered_map<std::string, std::vector<float>> color_map;
         float size_multiplier;
         void create_shape_map () ;
         void create_color_map () ;
@@ -16,7 +16,7 @@ class Shape
 
     public:
         Shape ();
-        std::vector<float> create_shape (std::string shape, std::string color, float size);
+        std::vector<float> create_shape (std::string shape, std::string color);
 
 
 };
