@@ -1,6 +1,6 @@
 #pragma once
 #include "graphics/Graphics.h"
-#include "models/Entity_data.h"
+#include "ecs/Entity_data.h"
 
 class Engine
 {

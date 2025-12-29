@@ -1,7 +1,7 @@
 #pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "models/components/renderobject.h"
+#include "ecs/components/renderobject.h"
 
 
 class Graphics

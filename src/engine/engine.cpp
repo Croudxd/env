@@ -1,6 +1,6 @@
 #include "engine.h"
 #include "graphics/Graphics.h"
-#include "models/Entity_data.h"
+#include "ecs/Entity_data.h"
 #include <iostream>
 #include <cmath>
 

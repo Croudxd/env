@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <cstdio>
 #include "graphics/Graphics.h"
-#include "models/components/renderobject.h"
+#include "ecs/components/renderobject.h"
 #include <iostream>
 //create glfw window and shaders and any opengl stuff and return glfw window and shaderprogram.
 
