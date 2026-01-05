@@ -17,6 +17,8 @@ int main ( )
     spawner.add_entity ( "fox" );
     spawner.add_entity ( "fox" );
     spawner.add_entity ( "fox" );
+    spawner.add_entity ( "rabbit" );
+    spawner.add_entity ( "rabbit" );
     engine.run ();
 }
 
