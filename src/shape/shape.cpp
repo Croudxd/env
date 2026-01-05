@@ -17,8 +17,8 @@ void Shape::create_shape_map ()
 void Shape::create_color_map () 
 {
     this->color_map.emplace("green", std::vector<float> {0.0, 1.0, 0.0});
-    this->color_map.emplace("blue", std::vector<float> {0.0, 0.0, 1.0});
-    this->color_map.emplace("red", std::vector<float> {1.0, 0.0, 0.0});
+    this->color_map.emplace("white", std::vector<float> {0.0, 0.0, 0.0});
+    this->color_map.emplace("orange", std::vector<float> {1.0f, 0.5f, 0.0f});
 }
 
 

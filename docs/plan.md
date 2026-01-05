@@ -1,6 +1,31 @@
 
 # Environment simulator. 
 - - - 
+###  3/Jan
+
+The next objective on my list is to create the main functionality of the simulation.
+
+There will be two modes, Active (or reactive) and idle. Active is going to be when there are other entities within the entity n perception, which we can then use in a risk formula, to calculate the foxes next move.
+
+Ie. the fox see's a rabbit and bear in its perception.
+
+The fox will have a risk of bear made from its own data, as a fox wont know exactly how fast a bear is in real life. It will just have its instinct.
+
+Then we calculate the risk of the fox starving, aka leaving and letting the rabbit go and avoiding the bear depending on the fox's hunger, health and endurance etc.
+
+and we will calculate this every n frame and then move the fox entity to x depending on the data.
+
+Firstly we need to correct assign each of our entities the correct data.
+
+Then make a risk function.
+
+Use the risk function to move the entities.
+
+create a function for predicting where the fox should go depending on what it needs via a heatmap or other forms of data we can collect. 
+
+have the predictive function run when entity is idle, and then we will move the entity based on that output.
+
+or something along these lines lol.
 
 ### 14/dec
 - - - 

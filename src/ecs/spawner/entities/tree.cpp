@@ -1,7 +1,6 @@
+#include "headers.h"
 
-#include "ecs/Entity_data.h"
-#include "ecs/spawner/spawner.h"
-#include "shape/shape.h"
+
 
 void tree ( Entity_data& entity_data )
 {
