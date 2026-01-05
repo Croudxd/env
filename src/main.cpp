@@ -1,8 +1,6 @@
 #include <glad/glad.h>
 #include <unistd.h>
-#include <vector>
 #include <GLFW/glfw3.h>
-#include <iostream>
 
 #include "ecs/Entity_data.h"
 #include "ecs/spawner/spawner.h"
@@ -19,8 +17,9 @@ int main ( )
     spawner.add_entity ( "fox" );
     spawner.add_entity ( "fox" );
     spawner.add_entity ( "fox" );
+    spawner.add_entity ( "rabbit" );
+    spawner.add_entity ( "rabbit" );
     engine.run ();
-    
 }
 
 

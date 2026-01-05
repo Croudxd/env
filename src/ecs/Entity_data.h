@@ -24,6 +24,7 @@ struct Entity_data
 {
     Entity_data() = default;
     Entity_data(const Entity_data&) = delete;  
+
     std::vector<Entity> entity_vec;
     std::unordered_map<Entity, RenderObject> render_map;  
     std::unordered_map<Entity, Eater_type> eater_type_map;
