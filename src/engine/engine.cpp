@@ -1,7 +1,6 @@
 #include "engine.h"
 #include "graphics/Graphics.h"
 #include "ecs/Entity_data.h"
-#include <iostream>
 #include <cmath>
 
 Engine::Engine ( Entity_data& entity_data ) : entity_data(entity_data)
@@ -21,6 +20,7 @@ void Engine::run (   )
     while ( !glfwWindowShouldClose ( this->graphics.get_window ( ) ) )
     {
         perception_brute_force ();
+        update_entity_state ();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //Draw to screen.
         
@@ -38,6 +38,21 @@ Entity_data& Engine::get_entity_data ()
     return this->entity_data;
 }
 
+
+void Engine::update_entity_state ()
+{
+    for (auto& entity : entity_data.entity_vec)
+    {
+        if ( entity_data.visable_entities_map[entity].entities.size() > 0 )
+        {
+            //reactive.
+        }
+        else 
+        {
+            //predictive. 
+        }
+    }
+}
 
 bool Engine::perception_brute_force ()
 {
