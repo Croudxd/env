@@ -22,7 +22,6 @@ void Engine::run (   )
 
         perception_brute_force ();
         compute_entity_behaviour ();
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         for ( auto it = entity_data.render_map.begin(); it != entity_data.render_map.end(); ++it ) {
             this->graphics.Update(it->second);
