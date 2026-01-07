@@ -35,26 +35,30 @@ namespace Probability
 { 
     void reactive (int entity_id, Entity_data& entity_data )
     {
-        auto it_version = entity_data.visable_entities_map.find(entity_id);
-
-        if ( it_version == entity_data.visable_entities_map.end())
+        auto it_version = entity_data.visable_entities_map.find( entity_id );
+        if ( it_version == entity_data.visable_entities_map.end() )
         {
             return;
         }
 
-        float size_a = entity_data.size_map.count(entity_id) ? entity_data.size_map.at(entity_id).size : 1.0f;
-        float aggression_a = entity_data.aggresion_map.count(entity_id) ? entity_data.aggresion_map.at(entity_id).aggresion : 1.0f;
-        float hunger = entity_data.hunger_map.count(entity_id) ? entity_data.hunger_map.at(entity_id).hunger : 1.0f;
-        float endurance = entity_data.endurance_map.count(entity_id) ? entity_data.endurance_map.at(entity_id).endurance : 1.0f;
+        float size_a = 
+            entity_data.size_map.count ( entity_id ) ? entity_data.size_map.at ( entity_id ).size : 1.0f;
+        float aggression_a = 
+            entity_data.aggresion_map.count ( entity_id ) ? entity_data.aggresion_map.at ( entity_id ).aggresion : 1.0f;
+        float hunger = 
+            entity_data.hunger_map.count ( entity_id ) ? entity_data.hunger_map.at ( entity_id ).hunger : 1.0f;
+        float endurance =
+            entity_data.endurance_map.count ( entity_id ) ? entity_data.endurance_map.at ( entity_id ).endurance : 1.0f;
+
         std::vector <float> results;
 
         auto & inner_map = it_version->second.entities;
 
-        for ( auto const& [entity_x, distance] : inner_map )
+        for ( auto const& [ entity_x, distance ] : inner_map )
         {
-            float size_b = entity_data.size_map.count(entity_x) ? entity_data.size_map.at(entity_x).size : 1.0f;
-            float aggresion_b = entity_data.aggresion_map.count(entity_x) ? entity_data.aggresion_map.at(entity_x).aggresion : 1.0f;
-            results.push_back ( ( size_a / size_b) * (aggression_a / aggresion_b) * ( ( hunger * endurance ) / distance ) );
+            float size_b = entity_data.size_map.count ( entity_x ) ? entity_data.size_map.at ( entity_x ).size : 1.0f;
+            float aggresion_b = entity_data.aggresion_map.count ( entity_x ) ? entity_data.aggresion_map.at ( entity_x ).aggresion : 1.0f;
+            results.push_back ( ( size_a / size_b ) * ( aggression_a / aggresion_b ) * ( ( hunger * endurance ) / distance ) );
         }
 
         float highest = 0.0;

@@ -48,6 +48,7 @@ void Engine::compute_entity_behaviour ()
         else 
         {
             //Call reactive. 
+            Probability::reactive( entity, entity_data );
         }
     }
 }
