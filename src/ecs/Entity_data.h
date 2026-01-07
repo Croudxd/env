@@ -14,7 +14,8 @@
 #include "ecs/components/sleep.h"
 #include "ecs/components/status.h"
 #include "ecs/components/visable_entities.h"
-
+#include "ecs/components/aggression.h"
+#include "ecs/components/size.h"
 
 
 using Entity = int;
@@ -38,5 +39,7 @@ struct Entity_data
     std::unordered_map<Entity, Sleep> sleep_map;
     std::unordered_map<Entity, Status> status_map;
     std::unordered_map<Entity, Visable_entities> visable_entities_map;
+    std::unordered_map<Entity, Aggression> aggresion_map;
+    std::unordered_map<Entity, Size> size_map;
 };
  

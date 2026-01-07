@@ -1,9 +1,8 @@
 #pragma once
-#include <vector>
+#include <unordered_map>
 
- 
 
 struct Visable_entities
 {
-    std::vector<int>  entities;
+    std::unordered_map<int, float>  entities;
 };
