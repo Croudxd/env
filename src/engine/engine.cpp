@@ -1,7 +1,9 @@
 #include "engine.h"
 #include "graphics/Graphics.h"
 #include "ecs/Entity_data.h"
+#include "engine/risk_probability.h"
 #include <cmath>
+
 
 Engine::Engine ( Entity_data& entity_data ) : entity_data(entity_data)
 {
@@ -13,6 +15,11 @@ Engine::~Engine ( )
     
 }
 
+Entity_data& Engine::get_entity_data ()
+{ 
+    return this->entity_data;
+}
+
 void Engine::run (   )
 {
     //Initalize the graphics. This opens the glfw/opengl window.
@@ -20,10 +27,8 @@ void Engine::run (   )
     while ( !glfwWindowShouldClose ( this->graphics.get_window ( ) ) )
     {
         perception_brute_force ();
-        update_entity_state ();
+        compute_entity_behaviour ();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        //Draw to screen.
-        
         for ( auto it = entity_data.render_map.begin(); it != entity_data.render_map.end(); ++it ) {
             this->graphics.Update(it->second);
         }
@@ -32,24 +37,18 @@ void Engine::run (   )
     }
 }
 
-
-Entity_data& Engine::get_entity_data ()
-{ 
-    return this->entity_data;
-}
-
-
-void Engine::update_entity_state ()
+void Engine::compute_entity_behaviour ()
 {
-    for (auto& entity : entity_data.entity_vec)
+    for ( auto& entity : entity_data.entity_vec )
     {
-        if ( entity_data.visable_entities_map[entity].entities.size() > 0 )
+        if ( entity_data.visable_entities_map[entity].entities.empty() )
         {
-            //reactive.
+            //Call predictive.
         }
         else 
         {
-            //predictive. 
+            //Call reactive. 
+            Probability::reactive( entity, entity_data );
         }
     }
 }
@@ -110,7 +109,7 @@ bool Engine::perception_brute_force ()
 
             if ( distance <= percep ) 
             {
-                entity_data.visable_entities_map [ id_a ].entities.push_back( id_b );
+                entity_data.visable_entities_map [ id_a ].entities[ id_b ] = distance;
             }
        }
     }
